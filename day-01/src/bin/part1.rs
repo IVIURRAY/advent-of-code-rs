@@ -5,18 +5,16 @@ fn main() {
 }
 
 
-fn solution(input: &str) -> i32 {
-    let mut total = 0;
-
-    for line in input.lines() {
-        let first_char = line.chars().find(|c| c.is_digit(10)).unwrap();
-        let last_char = line.chars().rev().find(|c| c.is_digit(10)).unwrap();
-
-        let combined= format!("{}{}", first_char, last_char).parse::<i32>().unwrap();
-        total += combined;
-    }
-
-    total
+fn solution(input: &str) -> u32 {
+    input.lines()
+        .map(|line|
+            line.chars()
+                .filter(|char| char.is_digit(10))
+                .map(|digit| digit.to_digit(10).unwrap())
+                .collect::<Vec<u32>>()
+        )
+        .map(|vec| 10 * vec.first().unwrap() + vec.last().unwrap())
+        .sum()
 }
 
 #[cfg(test)]
