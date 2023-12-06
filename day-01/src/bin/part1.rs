@@ -8,9 +8,7 @@ fn main() {
 fn solution(input: &str) -> u32 {
     input.lines()
         .map(|line|
-            line.chars()
-                .filter(|char| char.is_digit(10))
-                .map(|digit| digit.to_digit(10).unwrap())
+            line.chars().filter_map(|char| char.to_digit(10))
                 .collect::<Vec<u32>>()
         )
         .map(|vec| 10 * vec.first().unwrap() + vec.last().unwrap())
