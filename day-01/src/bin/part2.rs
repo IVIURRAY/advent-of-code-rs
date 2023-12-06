@@ -19,11 +19,7 @@ fn solution(input: &str) -> u32 {
                 .replace("eight", "eight8eight")
                 .replace("nine", "nine9nine")
                 .chars()
-                .filter(|c| c.is_digit(10))
-                .map(|c| {
-                    c.to_digit(10)
-                        .expect("Failed to convert character to digit")
-                })
+                .filter_map(|c| c.to_digit(10))
                 .collect::<Vec<u32>>()
         })
         .map(|vec| {
